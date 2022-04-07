@@ -1,0 +1,94 @@
+#:import Factory kivy.factory.Factory
+#:import ICON config.ICON
+
+
+<TrainingTrackerView>
+    id: viewport
+    navigation_screens: navigation_screens.__self__
+    navigation_rail: navigation_rail.__self__
+    MDBoxLayout:
+        orientation: 'vertical'
+
+        MDToolbar:
+            id: toolbar
+            type_height: 'small'
+            left_action_items: [['menu', lambda x: print(x)]]
+            right_action_items: [['dots-vertical', lambda x: print(x)]]
+            md_bg_color: app.theme_cls.bg_light
+
+        MDBoxLayout:
+            id: main_box
+            orientation: 'horizontal'
+            MDNavigationRail:
+                id: navigation_rail
+                use_title: False
+                use_resizeable: False
+                use_hover_behavior: True
+                md_bg_color: app.theme_cls.bg_normal
+                hover_bg: app.theme_cls.bg_light
+                color_normal: app.theme_cls.accent_color
+                color_active: app.theme_cls.primary_color
+                visible: 'Persistent'
+
+                MDNavigationRailItem:
+                    id: brain
+                    name: 'brain'
+                    text: 'Brain'
+                    icon: ICON.BRAIN
+                    on_release: root.on_navigation_item(self)
+
+                MDNavigationRailItem:
+                    id: bridge
+                    name: 'bridge'
+                    text: 'Brücke'
+                    icon: ICON.BRIDGE
+                    on_release: root.on_navigation_item(self)
+
+
+            ScreenManager:
+                id: navigation_screens
+                size_hint_x: None
+                width: 300
+                transition: Factory.get('SlideTransition')()
+                md_bg_color: app.theme_cls.bg_dark
+                BrainScreen:
+                    id: brain_screen
+                    name: 'brain_screen'
+                BridgeScreen:
+                    id: bridge_screen
+                    name: 'bridge_screen'
+        
+            MDBoxLayout:
+                id: output_box
+                size_hint_x: 0.8
+                orientation: 'vertical'
+
+        MDBoxLayout:
+            id: statebar
+            orientation: 'horizontal'
+            size_hint_x: 1
+            size_hint_y: None
+            height: 20
+            md_bg_color: app.theme_cls.bg_light
+
+#=============================== Z-DRIVE SCREEN ===============================
+<BrainScreen@MDScreen>:
+    md_bg_color: app.theme_cls.bg_dark
+    BoxLayout:
+        orientation: 'vertical'
+        MDLabel:
+            text: 'Gehirni Eingaben'
+        MDLabel:
+            text: 'Hier implementieren'
+
+
+#================================ MVPS SCREEN ================================
+<BridgeScreen@MDScreen>:
+    md_bg_color: app.theme_cls.bg_dark
+    BoxLayout:
+        orientation: 'vertical'
+        MDLabel:
+            text: 'Robin Hood Eingaben'
+        MDLabel:
+            text: 'Hier implementieren'
+

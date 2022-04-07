@@ -132,5 +132,5 @@ dmypy.json
 .vscode
 
 # kivy stuff
-.kivy/garden
-.log
+.kivy/logs
+.kivy/icon
