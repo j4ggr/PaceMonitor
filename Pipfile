@@ -1,0 +1,21 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+numpy = "*"
+scipy = "*"
+pandas = "*"
+requests = "*"
+statsmodels = "*"
+beautifulsoup4 = "*"
+kivy = {extras = ["base"], version = "*"}
+kivy-garden = "*"
+kivymd = {file = "https://github.com/kivymd/KivyMD/archive/master.zip"}
+darkdetect = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.9"
