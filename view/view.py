@@ -23,5 +23,6 @@ class PaceMonitorView(MDScreen):
         self.controller.navigate(item)
 
 
-build_file = Path(__file__).with_suffix('.kv')
-Builder.load_file(str(build_file))
+def build_view_content():
+    kv_file = Path(__file__).with_suffix('.kv')
+    Builder.load_file(str(kv_file))

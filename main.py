@@ -15,4 +15,5 @@ class PaceMonitor(MDApp):
         return self.controller.get_screen()
 
 if __name__ == '__main__':
-    PaceMonitor().run()
+    app = PaceMonitor()
+    app.run()

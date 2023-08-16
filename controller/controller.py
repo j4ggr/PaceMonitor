@@ -1,4 +1,4 @@
-from view.view import PaceMonitorView
+from view.view import PaceMonitorView, build_view_content
 
 
 class PaceMonitorController():
@@ -17,6 +17,7 @@ class PaceMonitorController():
         self.view = PaceMonitorView(controller=self, model=self.model)
 
     def get_screen(self):
+        build_view_content()
         return self.view
 
     def navigate(self, navigation_item):

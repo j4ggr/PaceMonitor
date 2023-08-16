@@ -2,7 +2,7 @@
 #:import ICON config.ICON
 
 
-<TrainingTrackerView>
+<PaceMonitorView>
     id: viewport
     navigation_screens: navigation_screens.__self__
     navigation_rail: navigation_rail.__self__
@@ -71,7 +71,7 @@
             height: 20
             md_bg_color: app.theme_cls.bg_light
 
-#=============================== Z-DRIVE SCREEN ===============================
+#=============================== BRAIN SCREEN ===============================
 <BrainScreen@MDScreen>:
     md_bg_color: app.theme_cls.bg_dark
     BoxLayout:
@@ -82,7 +82,7 @@
             text: 'Hier implementieren'
 
 
-#================================ MVPS SCREEN ================================
+#================================ BRIDGE SCREEN ================================
 <BridgeScreen@MDScreen>:
     md_bg_color: app.theme_cls.bg_dark
     BoxLayout:

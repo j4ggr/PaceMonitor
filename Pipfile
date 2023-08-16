@@ -4,16 +4,17 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+kivy = {extras = ["base"], version = "*"}
+kivymd = "*"
 numpy = "*"
 scipy = "*"
 pandas = "*"
+tomlkit = "*"
 requests = "*"
+matplotlib = "*"
+darkdetect = "*"
 statsmodels = "*"
 beautifulsoup4 = "*"
-kivy = {extras = ["base"], version = "*"}
-kivy-garden = "*"
-kivymd = {file = "https://github.com/kivymd/KivyMD/archive/master.zip"}
-darkdetect = "*"
 
 [dev-packages]
 

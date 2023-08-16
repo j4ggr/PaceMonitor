@@ -1,6 +1,6 @@
 
 from turtle import pd
-from requests import Session
+from requests import Session, exceptions
 import datetime
 
 class PolarFlowClient(Session):
@@ -10,7 +10,7 @@ class PolarFlowClient(Session):
         self.year_beg = self.year_now - 5
 
     @property
-    def url(self): return {
+    def urls(self): return {
         'login': 'https://flow.polar.com/login',
         'events': 'https://flow.polar.com/training/getCalendarEvents',
         'csv': 'https://flow.polar.com/api/export/training/csv/'}
@@ -20,15 +20,26 @@ class PolarFlowClient(Session):
             "email": username,
             "password": password,
             "returnUrl": '/'}
-        return self.post('https://flow.polar.com/login', data)
+        response = self.post('https://flow.polar.com/login', data)
+        self.status(response)
+        return response
+    
+    @staticmethod
+    def status(response):
+        try:
+            response.raise_for_status()
+        except exceptions.HTTPError:
+            print('oops bad status code {} on request!'.format(response.status_code))
+        else:
+            print('our login redirected to: {}'.format(response.url))
     
     def get_activities(self, year):
         params = {'start': f'01.01.{year}', 'end': f'31.12.{year}'}
-        return self.get(self.url['events'], params=params).json()
+        return self.get(self.urls['events'], params=params).json()
     
     def get_csv_export(self, activity):
         """Get CSV data as text"""
-        url = self.url['csv'] + str(activity['listItemId'])
+        url = self.urls['csv'] + str(activity['listItemId'])
         return self.get(url).text
     
     def extract(self):
